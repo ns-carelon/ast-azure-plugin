@@ -58,7 +58,7 @@ export class CheckmarxReportTab extends Controls.BaseControl {
                                     // add styles
                                     this.appendStyles(htmlDoc);
                                     // add main cx element
-                                    this.appendMainDiv(htmlDoc);
+                                    this.appendMainDiv(htmlDoc, this.projectId);
                                     // clean scripts and upload it
                                     this.appendScripts(htmlDoc);
                                 });
@@ -78,9 +78,9 @@ export class CheckmarxReportTab extends Controls.BaseControl {
         (document.getElementById('ast-report') as HTMLDivElement).innerHTML = "<p>"+text+"</p>";
 
     }
-    private appendMainDiv = (htmlDoc: Document): void => {
+    private appendMainDiv = (htmlDoc: Document, projectId: string): void => {
         const cxElement = htmlDoc.getElementsByClassName('cx-main')[0];
-        (document.getElementById('ast-report') as HTMLDivElement).innerHTML = cxElement.innerHTML;
+        (document.getElementById('ast-report') as HTMLDivElement).innerHTML = '<h1>Project ID: ' + projectId + '</h1>' + cxElement.innerHTML;
 
     }
 
